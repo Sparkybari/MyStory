@@ -143,3 +143,15 @@ body {
 }
 #contact button:hover { background: #555; }
 #formResponse { margin-top: .5rem; font-size: .95rem; opacity: .85; }
+
+#contact input.error,
+#contact textarea.error {
+  border: 2px solid red;
+  background-color: #ffecec;
+}
+
+#contact input.error,
+#contact textarea.error {
+  border: 2px solid red;
+  background-color: #ffecec;
+}
