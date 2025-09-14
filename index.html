@@ -87,3 +87,45 @@
 
 </body>
 </html>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+
+  <form id="contactForm" action="https://formspree.io/f/mzzaqbkr" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+
+    <!-- Honeypot (spam protection) -->
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <button type="submit">Send</button>
+  </form>
+
+  <p id="formResponse"></p>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const msg = document.getElementById('formResponse');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = 'Sending...';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        msg.textContent = '✅ Thanks! Your message was sent.';
+        form.reset();
+      } else {
+        msg.textContent = '⚠️ Something went wrong. Please try again.';
+      }
+    } catch {
+      msg.textContent = '❌ Network error. Please try again.';
+    }
+  });
+</script>
